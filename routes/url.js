@@ -11,10 +11,10 @@ router.get("/", async (req, res) => {
     const db = client.db("url-shortener");
     const urls = await db.collection("urls").find().toArray();
 
-    res.send({ message: "Success!", data: urls });
+    res.send({ message: "Success", data: urls });
   } catch (err) {
     console.log(err);
-    res.send({ error: "Error in connection!", details: err });
+    res.send({ message: "Error in connection!", error: err });
   } finally {
     client.close();
   }
@@ -30,10 +30,10 @@ router.post("/add-url", async (req, res) => {
       req.body.shortenUrl = url;
 
       const data = await db.collection("urls").insertOne(req.body);
-      res.send({ message: "Success!", data: data });
+      res.send({ message: "Success", data: data });
     } catch (err) {
       console.log(err);
-      res.send({ error: "Error in connection!", details: err });
+      res.send({ message: "Error in connection!", error: err });
     } finally {
       client.close();
     }

@@ -17,7 +17,7 @@ var transpoter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "urlshortener66@gmail.com",
-    pass: "qldiezdnmllhlyzk",
+    pass: process.env.PWD,
   },
   tls: {
     rejectUnauthorized: false,
@@ -35,7 +35,7 @@ router.get("/", async (req, res) => {
     res.send({ message: "success", data: data });
   } catch (err) {
     console.log(err);
-    res.send({ message: "Error in connection" });
+    res.send({ message: "Error in connection!", error: err });
   } finally {
     client.close();
   }
@@ -72,14 +72,14 @@ router.post("/register", async (req, res) => {
       if (error) {
         console.log("email error: ", error);
       } else {
-        console.log("Verification email sent!!!");
+        console.log("Verification email sent!");
       }
     });
 
     res.send({ message: "Account created", data: data });
   } catch (err) {
     console.log(err);
-    res.send({ message: "Error in connection", data: err });
+    res.send({ message: "Error in connection!", error: err });
   } finally {
     client.close();
   }
@@ -98,10 +98,10 @@ router.get("/verify-email/:emailToken", async (req, res) => {
         { $set: { emailToken: null, activation: true } }
       );
 
-    res.send({ message: "Account activated!!!" });
+    res.send({ message: "Account activated!" });
   } catch (err) {
     console.log(err);
-    res.send({ message: "Error in connection!!!" });
+    res.send({ message: "Error in connection!", error: err });
   } finally {
     client.close();
   }
@@ -127,20 +127,20 @@ router.post("/login", async (req, res) => {
 
         // verify compare
         if (compare) {
-          res.send({ message: "Login successfull!!!" });
+          res.send({ message: "Login successfull!" });
         } else {
           res.send({ message: "Invalid username or password" });
         }
       } else {
         console.log(user.activation);
-        res.send({ message: "Activate Account!!!" });
+        res.send({ message: "Activate Account!" });
       }
     } else {
       res.send({ message: "No user available" });
     }
   } catch (err) {
     console.log(err);
-    res.send({ message: "Error in connection", data: err });
+    res.send({ message: "Error in connection!", error: err });
   } finally {
     client.close();
   }
@@ -179,16 +179,16 @@ router.post("/forget-password", async (req, res) => {
         } else {
           res.send({
             token,
-            message: "Reset link has been sent successfully!!!",
+            message: "Reset link has been sent successfully!",
           });
         }
       });
     } else {
-      res.send({ message: "Invalid username!!!" });
+      res.send({ message: "Invalid username!" });
     }
   } catch (err) {
     console.log(err);
-    res.send({ message: "Error in connection" });
+    res.send({ message: "Error in connection", error: err });
   }
 });
 
@@ -220,13 +220,13 @@ router.post("/reset-password/:token", async (req, res) => {
           { $set: { password: req.body.password } }
         );
 
-      res.send({ message: "Password updated successfully!!!" });
+      res.send({ message: "Password updated successfully!" });
     } else {
-      res.send({ message: "Link expired!!!" });
+      res.send({ message: "Link expired!" });
     }
   } catch (err) {
     console.log(err);
-    res.send({ message: "Error in connection" });
+    res.send({ message: "Error in connection", error: err });
   } finally {
     client.close();
   }
