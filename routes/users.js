@@ -17,7 +17,7 @@ var transpoter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: "urlshortener66@gmail.com",
-    pass: process.env.PWD,
+    pass: "qldiezdnmllhlyzk",
   },
   tls: {
     rejectUnauthorized: false,
@@ -52,7 +52,7 @@ router.post("/register", async (req, res) => {
 
     const db = client.db("url-shortener");
 
-    // adding user with encrypted password and activation status.
+    // adding user with encrypted password, activation status and random string
     req.body.activation = false;
     req.body.emailToken = crypto.randomBytes(64).toString("hex");
     const data = await db.collection("users").insertOne(req.body);
@@ -107,6 +107,7 @@ router.get("/verify-email/:emailToken", async (req, res) => {
   }
 });
 
+// username & password
 router.post("/login", async (req, res) => {
   const client = await MongoClient.connect(dbUrl);
 
@@ -191,6 +192,7 @@ router.post("/forget-password", async (req, res) => {
   }
 });
 
+// after clicking the reset password link
 router.get("/reset-password/:token", async (req, res) => {
   res.render("index", { title: "Get from email" });
 });
