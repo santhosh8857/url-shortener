@@ -127,9 +127,9 @@ router.post("/login", async (req, res) => {
 
         // verify compare
         if (compare) {
-          res.send({ message: "Login successfull!" });
+          res.send({ message: "Login successfull!", status: true });
         } else {
-          res.send({ message: "Invalid username or password" });
+          res.send({ message: "Invalid username or password", status: false });
         }
       } else {
         console.log(user.activation);
