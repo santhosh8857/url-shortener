@@ -76,10 +76,10 @@ router.post("/register", async (req, res) => {
       }
     });
 
-    res.send({ message: "Account created", data: data });
+    res.send({ message: "Account created", data: data, status: true });
   } catch (err) {
     console.log(err);
-    res.send({ message: "Error in connection!", error: err });
+    res.send({ message: "Error in connection!", error: err, status: false });
   } finally {
     client.close();
   }
