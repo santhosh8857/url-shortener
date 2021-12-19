@@ -8,6 +8,7 @@ import LoginPage from "./components/login/LoginPage";
 import ForgetPassword from "./components/login/ForgetPassword";
 import ResetPassword from "./components/login/ResetPassword";
 import Register from "./components/login/Register";
+import Dashboard from "./components/Dashboard";
 
 const routing = (
   // parent for the routes
@@ -16,6 +17,7 @@ const routing = (
       <Route exact path="/" component={App} />
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/forget-password" component={ForgetPassword} />
+      <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/reset-password">
         <ResetPassword />
       </Route>

@@ -5,3 +5,18 @@
 .img-height {
   height: "1vh";
 }
+
+.forget-password {
+  text-align: right;
+  font-size: 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+.forget-password:hover {
+  color: #000;
+}
+
+.icon {
+  color: #fff;
+}

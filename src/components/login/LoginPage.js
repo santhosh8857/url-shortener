@@ -1,17 +1,18 @@
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  InputGroup,
-  InputGroupText,
-} from "reactstrap";
+import { Form, FormGroup, Input, InputGroup, InputGroupText } from "reactstrap";
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { useHistory } from "react-router";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import cardImg from "../img/user-icon.svg";
 import "./LoginPage.css";
 
 const LoginPage = () => {
+  const history = useHistory();
+
   // states to get the details
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -31,29 +32,36 @@ const LoginPage = () => {
     e.preventDefault();
   };
 
-  const checkUser = (details) => {
+  const checkUser = async (details) => {
     if (details.data.status) {
-      console.log(details.data.message);
+      await toast(details.data.message, { type: "success" });
+      history.push("/dashboard");
     } else {
-      console.log(details.data.message);
+      toast(details.data.message, { type: "error" });
     }
   };
 
   return (
     <>
+      <ToastContainer />
       <div className="container">
         <div
           className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 align-items-center justify-content-center"
           style={{ height: "100vh" }}
         >
           <div className="card" style={{ width: "20rem" }}>
-            <img className="card-img-top img-height" src={cardImg} alt="..." />
+            <img
+              className="card-img-top"
+              style={{ marginBottom: "0px" }}
+              src={cardImg}
+              alt="..."
+            />
             <div className="card-body p-4">
-              <Form onSubmit={handleSubmit}>
+              <Form onSubmit={handleSubmit} style={{ marginTop: "0px" }}>
                 <FormGroup>
                   <InputGroup>
                     <InputGroupText>
-                      <i class="far fa-user"></i>
+                      <i className="far fa-envelope"></i>
                     </InputGroupText>
                     <Input
                       type="email"
@@ -67,7 +75,7 @@ const LoginPage = () => {
                 <FormGroup>
                   <InputGroup>
                     <InputGroupText>
-                      <i class="fas fa-unlock-alt"></i>
+                      <i className="fas fa-unlock-alt"></i>
                     </InputGroupText>
                     <Input
                       type="password"
@@ -79,12 +87,33 @@ const LoginPage = () => {
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
+                  <p className="forget-password">
+                    <Link to="/forget-password" className="forget-password">
+                      Forgot password?
+                    </Link>
+                  </p>
+                </FormGroup>
+                <FormGroup>
                   <div className="text-center">
                     <button
                       className="btn btn-inline-block btn-dark"
-                      style={{ marginRight: "5px", width: "100%" }}
+                      style={{ marginRight: "5px", width: "45%" }}
                     >
                       Log In
+                    </button>
+                    <button
+                      className="btn btn-inline-block"
+                      style={{
+                        width: "45%",
+                        background: "#f5e6c8",
+                        border: "1px black solid",
+                      }}
+                      onClick={(e) => {
+                        history.push("/register");
+                        e.preventDefault();
+                      }}
+                    >
+                      Sign up
                     </button>
                   </div>
                 </FormGroup>
