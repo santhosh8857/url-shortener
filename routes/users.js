@@ -65,7 +65,7 @@ router.post("/register", async (req, res) => {
       subject: "url-shortener : Verify your email",
       html: `<h2>${req.body.firstname}! Thank you for registering to our application </h2>
         <h4>Please click on the below link to verify your email...</h4?
-        <a href='http://${process.env.URL}/users/verify-email/${req.body.emailToken}'>link to verify your email</a>`,
+        <a href='http://${process.env.URL}/verify-email/${req.body.emailToken}'>link to verify your email</a>`,
     };
 
     // sending email
@@ -175,7 +175,7 @@ router.post("/forget-password", async (req, res, next) => {
         subject: "url-shortener : Reset your password",
         html: `<h2>${user.firstname}! Thanks for using our application </h2>
         <h4>Please click on the below link to reset your password...</h4?
-        <a href='http://${process.env.URL}/users/reset-password/${token}'>Reset link</a>`,
+        <a href='http://${process.env.URL}/reset-password/${token}'>Reset link</a>`,
       };
 
       // sending email
