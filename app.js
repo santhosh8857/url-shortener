@@ -9,7 +9,11 @@ var app = express();
 
 // to enable cors policy
 app.use(cors());
-app.options("/users/forget-password", cors());
+app.options("/users/forget-password", cors(), (req, res) => res.send());
+
+// app.post("/users/forget-password", cors(), function (req, res, next) {
+//   res.json({msg: 'This is CORS-enabled for all origins!'})
+// })
 
 // routers
 var indexRouter = require("./routes/index");
