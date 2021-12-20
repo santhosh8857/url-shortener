@@ -147,8 +147,13 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/forget-password", async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+router.post("/forget-password", async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  res.header("Access-Control-Allow-Credentials", true);
   const client = await MongoClient.connect(dbUrl);
 
   try {
