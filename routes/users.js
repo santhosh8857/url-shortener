@@ -71,6 +71,7 @@ router.post("/register", async (req, res) => {
     // sending email
     transpoter.sendMail(mailOptions, (error, info) => {
       if (error) {
+        res.send({ message: "Error in email", error: error });
         console.log("email error: ", error);
       } else {
         res.send({ message: "Account created", data: data, status: true });
