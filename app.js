@@ -11,6 +11,10 @@ var app = express();
 app.use(cors());
 app.options("/users/forget-password", cors(), (req, res) => res.send());
 
+app.post("/users/forget-password", cors(), function (req, res, next) {
+  res.json({ msg: "This is CORS-enabled for all origins!" });
+});
+
 // routers
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
