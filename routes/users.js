@@ -146,7 +146,6 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// req => username
 router.post("/forget-password", async (req, res) => {
   const client = await MongoClient.connect(dbUrl);
 
