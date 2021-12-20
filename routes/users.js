@@ -73,11 +73,10 @@ router.post("/register", async (req, res) => {
       if (error) {
         console.log("email error: ", error);
       } else {
+        res.send({ message: "Account created", data: data, status: true });
         console.log("Verification email sent!");
       }
     });
-
-    res.send({ message: "Account created", data: data, status: true });
   } catch (err) {
     console.log(err);
     res.send({ message: "Error in connection!", error: err, status: false });
