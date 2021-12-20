@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import cardImg from "../img/user-icon.svg";
 import "./LoginPage.css";
+import Navbar from "../Navbar";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -44,10 +45,11 @@ const LoginPage = () => {
   return (
     <>
       <ToastContainer />
+      <Navbar />
       <div className="container">
         <div
           className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 align-items-center justify-content-center"
-          style={{ height: "100vh" }}
+          style={{ height: "90vh" }}
         >
           <div className="card" style={{ width: "20rem" }}>
             <img

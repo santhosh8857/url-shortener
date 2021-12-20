@@ -47,16 +47,12 @@ const Register = () => {
 
   const checkNewUser = (details) => {
     if (details.data.status) {
-      toast(
-        <Link
-          to="/login"
-          className="text-dark"
-          style={{ textDecoration: "none" }}
-        >
-          Account Created!!
-        </Link>,
-        { type: "success" }
-      );
+      toast("Account created!", {
+        type: "success",
+        onClose: () => {
+          history.push("/login");
+        },
+      });
     } else if (details.data.error.code === 11000) {
       toast("Please use different username", { type: "error" });
     }
@@ -74,7 +70,7 @@ const Register = () => {
         <div className="row">
           <div className="col-6">
             <h2 className="text-center display-3">
-              <i class="fas fa-compress-alt" style={{ fontSize: "50px" }}></i>
+              <i class="fas fa-compress-alt" style={{ fontSize: "50px" }}></i>{" "}
               Bit-Sized URL
             </h2>
             <div className="d-flex justify-content-center align-items-center mt-5">
@@ -96,7 +92,11 @@ const Register = () => {
             <h3>Create your account.</h3>
             <p>
               Already have an account?
-              <Link to="/login" className="text-danger">
+              <Link
+                to="/login"
+                style={{ textDecoration: "none", color: "#E50914" }}
+              >
+                {" "}
                 Log in
               </Link>
             </p>
