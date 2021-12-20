@@ -5,15 +5,16 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-// routers
-var indexRouter = require("./routes/index");
-var usersRouter = require("./routes/users");
-var urlRouter = require("./routes/url");
-
 var app = express();
 
 // to enable cors policy
 app.use(cors());
+app.options("*", cors());
+
+// routers
+var indexRouter = require("./routes/index");
+var usersRouter = require("./routes/users");
+var urlRouter = require("./routes/url");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
