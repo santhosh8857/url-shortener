@@ -3,7 +3,7 @@ var router = express.Router();
 const nodemailer = require("nodemailer");
 const env = require("dotenv").config();
 const crypto = require("crypto");
-const app = require("../app");
+// const app = require("../app");
 const { mongodb, MongoClient, dbUrl } = require("../dbConfig");
 const {
   hashing,
@@ -147,7 +147,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-app.post("/forget-password", cors(), async (req, res) => {
+router.post("/forget-password", async (req, res) => {
   const client = await MongoClient.connect(dbUrl);
 
   try {
