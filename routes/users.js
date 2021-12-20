@@ -146,7 +146,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.post("/forget-password", async (req, res) => {
+router.post("/forget-password", cors(), async (req, res) => {
   const client = await MongoClient.connect(dbUrl);
 
   try {
