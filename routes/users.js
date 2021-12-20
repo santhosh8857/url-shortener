@@ -58,14 +58,18 @@ router.post("/register", async (req, res) => {
     req.body.emailToken = crypto.randomBytes(64).toString("hex");
     const data = await db.collection("users").insertOne(req.body);
 
+    const user = await db
+      .collection("users")
+      .findOne({ username: req.body.username });
+
     // verification email to user
     var mailOptions = {
-      from: ' "Verfiy your email" <urlshortener66@gmail.com>',
-      to: req.body.username,
+      from: '"Verfiy your email" <urlshortener66@gmail.com>',
+      to: user.username,
       subject: "url-shortener : Verify your email",
-      html: `<h2>${req.body.firstname}! Thank you for registering to our application </h2>
+      html: `<h2>${user.firstname}! Thank you for registering to our application </h2>
         <h4>Please click on the below link to verify your email...</h4?
-        <a href='http://${process.env.URL}/verify-email/${req.body.emailToken}'>link to verify your email</a>`,
+        <a href='http://${process.env.URL}/verify-email/${user.emailToken}'>link to verify your email</a>`,
     };
 
     // sending email
@@ -170,7 +174,7 @@ router.post("/forget-password", async (req, res, next) => {
 
       // send reset email to user
       var mailOptions = {
-        from: ' "Reset your password" <urlshortener66@gmail.com>',
+        from: '"Reset your password" <urlshortener66@gmail.com>',
         to: user.username,
         subject: "url-shortener : Reset your password",
         html: `<h2>${user.firstname}! Thanks for using our application </h2>
