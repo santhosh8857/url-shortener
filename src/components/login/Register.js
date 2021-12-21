@@ -70,7 +70,10 @@ const Register = () => {
         <div className="row">
           <div className="col-6">
             <h2 className="text-center display-3">
-              <i class="fas fa-compress-alt" style={{ fontSize: "50px" }}></i>{" "}
+              <i
+                className="fas fa-compress-alt"
+                style={{ fontSize: "50px" }}
+              ></i>{" "}
               Bit-Sized URL
             </h2>
             <div className="d-flex justify-content-center align-items-center mt-5">
@@ -121,7 +124,7 @@ const Register = () => {
                 <Label>First name</Label>
                 <InputGroup>
                   <InputGroupText>
-                    <i class="far fa-user"></i>
+                    <i className="far fa-user"></i>
                   </InputGroupText>
                   <Input
                     type="text"
@@ -137,7 +140,7 @@ const Register = () => {
                 <Label>Last name</Label>
                 <InputGroup>
                   <InputGroupText>
-                    <i class="far fa-user"></i>
+                    <i className="far fa-user"></i>
                   </InputGroupText>
                   <Input
                     type="text"
@@ -152,7 +155,7 @@ const Register = () => {
                 <Label>Password</Label>
                 <InputGroup>
                   <InputGroupText>
-                    <i class="fas fa-lock"></i>
+                    <i className="fas fa-lock"></i>
                   </InputGroupText>
                   <Input
                     type="password"
@@ -168,7 +171,7 @@ const Register = () => {
                 <Label>Confirm Password</Label>
                 <InputGroup>
                   <InputGroupText>
-                    <i class="fas fa-lock"></i>
+                    <i className="fas fa-lock"></i>
                   </InputGroupText>
                   <Input
                     type="password"

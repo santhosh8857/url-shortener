@@ -71,6 +71,7 @@ const LoginPage = () => {
                       id="email"
                       placeholder="Enter your username"
                       onChange={(e) => setUsername(e.target.value)}
+                      required
                     />
                   </InputGroup>
                 </FormGroup>
@@ -85,6 +86,7 @@ const LoginPage = () => {
                       id="password"
                       placeholder="Enter your password"
                       onChange={(e) => setPassword(e.target.value)}
+                      required
                     />
                   </InputGroup>
                 </FormGroup>

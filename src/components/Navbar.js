@@ -10,12 +10,12 @@ const Navbar = () => {
             className="text-center"
             style={{ marginLeft: "10px", color: "#f5e6c8" }}
           >
-            <i class="fas fa-compress-alt" style={{ fontSize: "25px" }}></i>{" "}
+            <i className="fas fa-compress-alt" style={{ fontSize: "25px" }}></i>{" "}
             Bit-Sized URL
           </h3>
         </Link>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+        <div className="collapse navbar-collapse" id="navbarText">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
           <span className="navbar-text">
             <Link
               to="/about"
@@ -27,7 +27,7 @@ const Navbar = () => {
               About
             </Link>
           </span>
-          <span class="navbar-text">
+          <span className="navbar-text">
             <Link
               to="/contact"
               className="nav-link"

@@ -28,7 +28,7 @@ const ForgetPassword = () => {
               color: "#f5e6c8",
             }}
           >
-            <i class="fas fa-arrow-circle-left"></i> Back To Home
+            <i className="fas fa-arrow-circle-left"></i> Back To Home
           </p>
         </Link>
       </nav>
