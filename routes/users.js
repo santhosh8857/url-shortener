@@ -90,6 +90,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// email verification
 router.get("/verify-email/:emailToken", async (req, res) => {
   const client = await MongoClient.connect(dbUrl);
 
@@ -103,16 +104,16 @@ router.get("/verify-email/:emailToken", async (req, res) => {
         { $set: { emailToken: null, activation: true } }
       );
 
-    res.send({ message: "Account activated!" });
+    res.send({ message: "Account activated!", status: true });
   } catch (err) {
     console.log(err);
-    res.send({ message: "Error in connection!", error: err });
+    res.send({ message: "Error in connection!", status: false, error: err });
   } finally {
     client.close();
   }
 });
 
-// username & password
+// username & password.
 router.post("/login", async (req, res) => {
   const client = await MongoClient.connect(dbUrl);
 
@@ -151,6 +152,7 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// forget password.
 router.post("/forget-password", async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -202,12 +204,7 @@ router.post("/forget-password", async (req, res, next) => {
   }
 });
 
-// after clicking the reset password link
-router.get("/reset-password/:token", async (req, res) => {
-  res.render("index", { title: "Get from email" });
-});
-
-// reset-password.  takes new password
+// reset-password.
 router.post("/reset-password/:token", async (req, res) => {
   const client = await MongoClient.connect(dbUrl);
 
@@ -240,6 +237,11 @@ router.post("/reset-password/:token", async (req, res) => {
   } finally {
     client.close();
   }
+});
+
+// after clicking the reset password link (testing from backend!!!) no action for production
+router.get("/reset-password/:token", async (req, res) => {
+  res.render("index", { title: "Get from email" });
 });
 
 module.exports = router;
