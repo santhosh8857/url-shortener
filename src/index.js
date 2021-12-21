@@ -9,7 +9,7 @@ import ForgetPassword from "./components/login/ForgetPassword";
 import ResetPassword from "./components/login/ResetPassword";
 import Register from "./components/login/Register";
 import Dashboard from "./components/Dashboard";
-import EmailVerification from "./components/login/EmailVerification";
+import EmailVerification from "./components/EmailVerification";
 
 const routing = (
   // parent for the routes
