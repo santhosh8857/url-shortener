@@ -14,11 +14,11 @@ const {
 const { ObjectId } = require("mongodb");
 
 // sender email details
-var transpoter = nodemailer.createTransport({
+const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "urlshortener66@gmail.com",
-    pass: `${process.env.PWD}`,
+    user: "noreply8857@gmail.com",
+    pass: process.env.PWD,
   },
   tls: {
     rejectUnauthorized: false,
@@ -63,17 +63,17 @@ router.post("/register", async (req, res) => {
       .findOne({ username: req.body.username });
 
     // verification email to user
-    var mailOptions = {
-      from: '"Verfiy your email" <urlshortener66@gmail.com>',
+    const mailOptions = {
+      from: '"Verfiy your email" <noreply8857@gmail.com>',
       to: user.username,
       subject: "url-shortener : Verify your email",
-      html: `<h2>${user.firstname}! Thank you for registering to our application </h2>
+      html: `<h2>Hi ${user.firstname}! <br> Thank you for registering to our application </h2>
         <h4>Please click on the below link to verify your email...</h4?
-        <a href='${process.env.URL}/verify-email/${user.emailToken}'>link to verify your email</a>`,
+        <a href='${process.env.URL}/verify-email/${user.emailToken}'>link</a>`,
     };
 
     // sending email
-    transpoter.sendMail(mailOptions, (error, info) => {
+    transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         // res.send({ message: "Error in email", error: error });
         console.log("email error: ", error);
@@ -176,16 +176,16 @@ router.post("/forget-password", async (req, res, next) => {
 
       // send reset email to user
       var mailOptions = {
-        from: '"Reset your password" <urlshortener66@gmail.com>',
+        from: '"Reset your password" <noreply8857@gmail.com>',
         to: user.username,
         subject: "url-shortener : Reset your password",
-        html: `<h2>${user.firstname}! Thanks for using our application </h2>
-        <h4>Please click on the below link to reset your password...</h4?
+        html: `<h2>Hi ${user.firstname}! <br> Thanks for using our application </h2>
+        <h4>Please click on the below link to reset your password...</h4><br>
         <a href='${process.env.URL}/reset-password/${token}'>Reset link</a>`,
       };
 
       // sending email
-      transpoter.sendMail(mailOptions, (error, info) => {
+      transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           console.log("email error: ", error);
         } else {
