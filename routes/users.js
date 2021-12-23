@@ -17,7 +17,7 @@ const { ObjectId } = require("mongodb");
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "noreply8857@gmail.com",
+    user: "santhosh8857@gmail.com",
     pass: process.env.PWD,
   },
   tls: {
@@ -64,7 +64,7 @@ router.post("/register", async (req, res) => {
 
     // verification email to user
     const mailOptions = {
-      from: '"Verfiy your email" <noreply8857@gmail.com>',
+      from: '"Verfiy your email" <santhosh8857@gmail.com>',
       to: user.username,
       subject: "url-shortener : Verify your email",
       html: `<h2>Hi ${user.firstname}! <br> Thank you for registering to our application </h2>
@@ -176,7 +176,7 @@ router.post("/forget-password", async (req, res, next) => {
 
       // send reset email to user
       var mailOptions = {
-        from: '"Reset your password" <noreply8857@gmail.com>',
+        from: '"Reset your password" <santhosh8857@gmail.com>',
         to: user.username,
         subject: "url-shortener : Reset your password",
         html: `<h2>Hi ${user.firstname}! <br> Thanks for using our application </h2>
