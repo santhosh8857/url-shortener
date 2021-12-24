@@ -34,7 +34,7 @@ const EmailVerification = () => {
       .catch((err) => console.log(err));
   }, [emailToken]);
 
-  console.log(userVerificaion);
+  // console.log(userVerificaion);
   return (
     <>
       <nav className="navbar navbar-expand-lg"></nav>

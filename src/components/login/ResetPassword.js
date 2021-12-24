@@ -31,7 +31,7 @@ const ResetPassword = () => {
   const handleSubmit = (e) => {
     if (newPassword === checkPassword) {
       axios
-        .post(`${process.env.REACT_APP_apiUrl}reset-password/${token}`, {
+        .post(`${process.env.REACT_APP_apiUrl}users/reset-password/${token}`, {
           password: newPassword,
         })
         .then((resp) => checkPwd(resp))
@@ -44,9 +44,9 @@ const ResetPassword = () => {
 
   const checkPwd = (details) => {
     if (details.data.status) {
-      toast(details.data.message, { type: "success" });
+      toast(`${details.data.message}`, { type: "success" });
     } else {
-      toast(details.data.message, { type: "error" });
+      toast(`${details.data.message}`, { type: "error" });
     }
   };
 
@@ -85,7 +85,7 @@ const ResetPassword = () => {
                 <Label>New password</Label>
                 <InputGroup>
                   <InputGroupText>
-                    <i class="fas fa-lock"></i>
+                    <i className="fas fa-lock"></i>
                   </InputGroupText>
                   <Input
                     type="password"
@@ -101,7 +101,7 @@ const ResetPassword = () => {
                 <Label>Confirm password</Label>
                 <InputGroup>
                   <InputGroupText>
-                    <i class="fas fa-lock"></i>
+                    <i className="fas fa-lock"></i>
                   </InputGroupText>
                   <Input
                     type="password"

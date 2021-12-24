@@ -27,7 +27,6 @@ const LoginPage = () => {
       })
       .then((resp) => {
         checkUser(resp);
-        console.log(resp);
       })
       .catch((err) => console.log(err));
     e.preventDefault();

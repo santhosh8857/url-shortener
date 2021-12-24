@@ -22,10 +22,11 @@ const ForgetPassword = () => {
 
   const checkUser = (details) => {
     if (details.data.status) {
-      toast(details.data.status, { type: "success" });
+      toast(`${details.data.message}`, { type: "success" });
     } else {
-      toast(details.data.status, { type: "error" });
+      toast(`${details.data.message}`, { type: "error" });
     }
+    // console.log(details.data.status);
   };
 
   return (
