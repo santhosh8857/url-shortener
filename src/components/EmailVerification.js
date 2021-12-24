@@ -6,7 +6,7 @@ import error from "./img/404.png";
 import { useParams } from "react-router-dom";
 
 const items = {
-  verfied: {
+  verified: {
     img: verify,
     title: "Thank you!",
     text: `Your email address is confirmed. You can now login into the
@@ -47,7 +47,7 @@ const EmailVerification = () => {
             {userVerificaion.length !== 0 ? (
               <>
                 {userVerificaion.data.status ? (
-                  <Card items={items.verfied} />
+                  <Card items={items.verified} />
                 ) : (
                   <Card items={items.error} />
                 )}

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Form, FormGroup, Input, InputGroup, InputGroupText } from "reactstrap";
 import email from "../img/email.png";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ForgetPassword = () => {
   const [username, setUsername] = useState("");
@@ -12,14 +14,23 @@ const ForgetPassword = () => {
       .post(`${process.env.REACT_APP_apiUrl}users/forget-password`, {
         username: username,
       })
-      .then((resp) => console.log(resp))
+      .then((resp) => checkUser(resp))
       .catch((err) => console.log(err));
 
     e.preventDefault();
   };
 
+  const checkUser = (details) => {
+    if (details.data.status) {
+      toast(details.data.status, { type: "success" });
+    } else {
+      toast(details.data.status, { type: "error" });
+    }
+  };
+
   return (
     <>
+      <ToastContainer />
       <nav className="navbar navbar-expand-lg">
         <Link to="/" style={{ textDecoration: "none" }}>
           <p
