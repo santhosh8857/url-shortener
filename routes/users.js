@@ -1,18 +1,21 @@
 var express = require("express");
 var router = express.Router();
+// nodemailer
 const nodemailer = require("nodemailer");
 const sgTransport = require("nodemailer-sendgrid-transport");
 const env = require("dotenv").config();
+// crypto
 const crypto = require("crypto");
-// const app = require("../app");
+// mongodb
 const { mongodb, MongoClient, dbUrl } = require("../dbConfig");
+const { ObjectId } = require("mongodb");
+// password hashing
 const {
   hashing,
   hashCompare,
   createToken,
   authenticate,
 } = require("../library/auth"); // importing for authentication
-const { ObjectId } = require("mongodb");
 
 // sender email details
 const transporter = nodemailer.createTransport(
@@ -90,20 +93,29 @@ router.post("/register", async (req, res) => {
 });
 
 // email verification
-router.get("/verify-email/:emailToken", async (req, res) => {
+router.post("/verify-email/:emailToken", async (req, res) => {
   const client = await MongoClient.connect(dbUrl);
 
+  let urlToken = req.params.emailToken;
   try {
     const db = client.db("url-shortener");
 
-    const user = await db
-      .collection("users")
-      .updateOne(
-        { emailToken: req.params.emailToken },
-        { $set: { emailToken: null, activation: true } }
-      );
+    const user = await db.collection("users").findOne({
+      emailToken: urlToken,
+    });
+    if (user.emailToken === urlToken) {
+      const userData = await db
+        .collection("users")
+        .updateOne(
+          { emailToken: req.params.emailToken },
+          { $set: { emailToken: null, activation: true } }
+        );
 
-    res.send({ message: "Account activated!", status: true });
+      res.send({ message: "Account activated!", status: true });
+    } else {
+      res.send({ message: "Invalid token!", status: false });
+    }
+    // res.send({ message: "Account activated!", status: true });
   } catch (err) {
     console.log(err);
     res.send({ message: "Error in connection!", status: false, error: err });
@@ -192,15 +204,16 @@ router.post("/forget-password", async (req, res, next) => {
           res.send({
             token,
             message: "Reset link has been sent successfully!",
+            status: true,
           });
         }
       });
     } else {
-      res.send({ message: "Invalid username!" });
+      res.send({ message: "Invalid username!", status: false });
     }
   } catch (err) {
     console.log(err);
-    res.send({ message: "Error in connection", error: err });
+    res.send({ message: "Error in connection", error: err, status: false });
   }
 });
 
