@@ -240,13 +240,13 @@ router.post("/reset-password/:token", async (req, res) => {
           { $set: { password: req.body.password } }
         );
 
-      res.send({ message: "Password updated successfully!" });
+      res.send({ message: "Password updated successfully!", status: true });
     } else {
-      res.send({ message: "Link expired!" });
+      res.send({ message: "Link expired!", status: false });
     }
   } catch (err) {
     console.log(err);
-    res.send({ message: "Error in connection", error: err });
+    res.send({ message: "Error in connection", error: err, status: false });
   } finally {
     client.close();
   }
