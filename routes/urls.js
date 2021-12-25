@@ -61,4 +61,24 @@ router.post("/:id", async (req, res) => {
     client.close();
   }
 });
+
+// to detele a url
+router.delete("/:id", async (req, res) => {
+  const client = await MongoClient.connect(dbUrl);
+
+  try {
+    const db = client.db("url-shortener");
+    const deleteUrl = await db
+      .collection("urls")
+      .deleteOne({ _id: ObjectId(req.params.id) });
+
+    res.send({ message: "Success!", status: true });
+  } catch (err) {
+    console.log(err);
+    res.send({ message: "Error in connection", status: false, error: err });
+  } finally {
+    client.close();
+  }
+});
+
 module.exports = router;
