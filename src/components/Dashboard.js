@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "./login/LoginPage.css";
 
 const Dashboard = () => {
   const [urls, setUrls] = useState([]);
@@ -32,6 +33,29 @@ const Dashboard = () => {
     axios
       .get(`${process.env.REACT_APP_apiUrl}urls`)
       .then((resp) => setUrls(resp.data.data))
+      .catch((err) => console.log(err));
+  };
+
+  const handleClick = (id, shortenUrl) => {
+    axios
+      .post(`${process.env.REACT_APP_apiUrl}urls/${id}`)
+      .then((resp) => {
+        if (resp.data.status) {
+          getUrls();
+          window.open(shortenUrl, "_blank");
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const deleteUrl = (id) => {
+    axios
+      .delete(`${process.env.REACT_APP_apiUrl}urls/${id}`)
+      .then((resp) => {
+        if (resp.data.status) {
+          getUrls();
+        }
+      })
       .catch((err) => console.log(err));
   };
 
@@ -72,7 +96,7 @@ const Dashboard = () => {
                     borderTopLeftRadius: "0px",
                   }}
                 >
-                  Simplify <i class="fas fa-angle-double-right"></i>
+                  Simplify <i className="fas fa-angle-double-right"></i>
                 </button>
               </span>
             </InputGroup>
@@ -81,34 +105,53 @@ const Dashboard = () => {
       </div>
       <div className="container">
         <h3 className="text-light my-4">
-          <i class="fas fa-link"></i> Recent URLs
+          <i className="fas fa-link"></i> Recent URLs
         </h3>
-        <div style={{ background: "#f5e6c8" }}>
-          <Table
-            stripped
-            hover
-            className="table-light table-hover table-borderless"
-          >
-            <thead>
-              <th className="p-2">Long Url</th>
-              <th className="p-2">Short Url</th>
-              <th className="p-2">Clicks</th>
+        <div>
+          <Table hover className="table-light table-hover table-borderless">
+            <thead className="table-warning">
+              <tr>
+                <th className="p-2">Long Url</th>
+                <th className="p-2">Short Url</th>
+                <th className="p-2">Clicks</th>
+                <th className="p-2">Delete</th>
+              </tr>
             </thead>
             <tbody>
               {urls?.map((item, key) => {
                 return (
                   <tr key={key}>
-                    <td>{item.url}</td>
-                    <td style={{ width: "25%" }}>
-                      <i class="fas fa-link"></i> {item.shortenUrl}
+                    <td
+                      style={{ cursor: "pointer" }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.open(`${item.url}`, "_blank");
+                      }}
+                    >
+                      {item.url}
                     </td>
-                    <td className="text-center">
-                      {/* <span
-                        className="text-center p-1 border text-dark"
-                        style={{ background: "#64b9ff", borderRadius: "45%" }}
-                      > */}
-                      {item.count}
-                      {/* </span> */}
+                    <td
+                      style={{
+                        width: "25%",
+                        cursor: "pointer",
+                        color: "#0000ff",
+                      }}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleClick(item._id, item.shortenUrl);
+                      }}
+                    >
+                      <i className="fas fa-link d-inline"></i> {item.shortenUrl}
+                    </td>
+                    <td className="text-center">{item.count}</td>
+                    <td className="text-center text-danger">
+                      <i
+                        className="far fa-trash-alt"
+                        onClick={(e) => {
+                          e.preventDefault();
+                          deleteUrl(item._id);
+                        }}
+                      ></i>
                     </td>
                   </tr>
                 );

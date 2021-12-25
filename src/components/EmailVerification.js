@@ -27,9 +27,10 @@ const EmailVerification = () => {
 
   let { emailToken } = useParams();
 
+  // to update the activation status of the user
   useEffect(() => {
     axios
-      .post(`${process.env.REACT_APP_apiUrl}users//verify-email/${emailToken}`)
+      .post(`${process.env.REACT_APP_apiUrl}users/verify-email/${emailToken}`)
       .then((resp) => setUserVerification(resp))
       .catch((err) => console.log(err));
   }, [emailToken]);

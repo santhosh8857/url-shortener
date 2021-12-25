@@ -23,11 +23,13 @@ const ResetPassword = () => {
 
   const { newPassword, checkPassword } = passwordDetails;
 
+  // to store the values of the form input
   const handleChange = (e) => {
     setPasswordDetails({ ...passwordDetails, [e.target.name]: e.target.value });
     e.preventDefault();
   };
 
+  // verify password
   const handleSubmit = (e) => {
     if (newPassword === checkPassword) {
       axios
@@ -42,6 +44,7 @@ const ResetPassword = () => {
     e.preventDefault();
   };
 
+  // toast
   const checkPwd = (details) => {
     if (details.data.status) {
       toast(`${details.data.message}`, { type: "success" });

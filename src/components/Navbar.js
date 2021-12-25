@@ -38,10 +38,10 @@ const Navbar = ({ btn }) => {
             </Link>
           </span>
           <>
+            {/* For login button */}
             {btn ? (
               <span className="navbar-text">
-                <Link
-                  to="/login"
+                <div
                   className="nav-link"
                   id="nav-hover"
                   style={{ color: "#f5e6c8" }}
@@ -53,32 +53,20 @@ const Navbar = ({ btn }) => {
                       background: "#f5e6c8",
                       fontWeight: "500",
                     }}
+                    // to remove the dashboard route
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.replace("/");
+                    }}
                   >
                     {btn}
                   </button>
-                </Link>
+                </div>
               </span>
             ) : null}
           </>
         </div>
       </nav>
-      {/* <nav id="navigation">
-        <div class="box">
-          <h3 class="logo">
-            <Link to="/login">
-              <i class="fas fa-compress-alt"> Bit-Sized URL</i>
-            </Link>
-          </h3>
-          <ul>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact Us</Link>
-            </li>
-          </ul>
-        </div>
-      </nav> */}
     </div>
   );
 };

@@ -20,7 +20,6 @@ const Card = ({ items }) => {
             <FormGroup>
               <Link to="/" style={{ textDecoration: "none" }}>
                 <button
-                  onClick={() => {}}
                   className="btn btn-inline-block btn-dark"
                   style={{ width: "100%" }}
                 >
