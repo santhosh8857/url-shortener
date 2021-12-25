@@ -18,7 +18,7 @@ app.use(cors());
 // routers
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var urlRouter = require("./routes/url");
+var urlRouter = require("./routes/urls");
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
