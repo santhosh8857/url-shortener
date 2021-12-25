@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ btn }) => {
   return (
     <div>
       <nav className="navbar navbar-expand-lg">
@@ -37,6 +37,29 @@ const Navbar = () => {
               Contact Us
             </Link>
           </span>
+          <>
+            {btn ? (
+              <span className="navbar-text">
+                <Link
+                  to="/login"
+                  className="nav-link"
+                  id="nav-hover"
+                  style={{ color: "#f5e6c8" }}
+                >
+                  <button
+                    className="btn btn-inline-block"
+                    style={{
+                      width: "100%",
+                      background: "#f5e6c8",
+                      fontWeight: "500",
+                    }}
+                  >
+                    {btn}
+                  </button>
+                </Link>
+              </span>
+            ) : null}
+          </>
         </div>
       </nav>
       {/* <nav id="navigation">
