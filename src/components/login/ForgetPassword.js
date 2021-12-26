@@ -5,6 +5,7 @@ import email from "../img/email.png";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Footer from "../header-footer/Footer";
 
 const ForgetPassword = () => {
   const [username, setUsername] = useState("");
@@ -85,6 +86,7 @@ const ForgetPassword = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

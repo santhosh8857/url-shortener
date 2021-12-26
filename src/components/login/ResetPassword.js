@@ -12,6 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import Footer from "../header-footer/Footer";
 
 const ResetPassword = () => {
   let { token } = useParams();
@@ -127,6 +128,7 @@ const ResetPassword = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

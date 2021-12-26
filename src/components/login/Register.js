@@ -15,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import registerImg from "../img/register.PNG";
+import Footer from "../header-footer/Footer";
 
 const Register = () => {
   const history = useHistory();
@@ -195,6 +196,7 @@ const Register = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

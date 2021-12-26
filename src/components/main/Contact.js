@@ -1,12 +1,31 @@
 import React, { useState } from "react";
-import ContactCard from "./cards/ContactCard";
+import ContactCard from "../cards/ContactCard";
 import { Form, FormGroup, Input, InputGroup, Label } from "reactstrap";
 import { Link } from "react-router-dom";
-import contact from "./img/contact.png";
+import contact from "../img/contact.png";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import Footer from "../header-footer/Footer";
+
+const contactInfo = {
+  location: {
+    icon: `fa-map-marker-alt`,
+    title: "Location",
+    text: "50, Main St, Guindy, Chennai",
+  },
+  phone: {
+    icon: `fa-phone`,
+    title: "Phone Number",
+    text: "+91 866-780-2699",
+  },
+  emailId: {
+    icon: `fa-paper-plane`,
+    title: "Email Address",
+    text: "santhosh8857@gmail.com",
+  },
+};
 
 const Contact = () => {
   const [contactDetails, setContactDetails] = useState({
@@ -19,7 +38,7 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     axios
-      .post(`${process.env.REACT_APP_apiUrl}/contact`, {
+      .post(`${process.env.REACT_APP_apiUrl}/contacts`, {
         name: name,
         email: email,
         feedback: feedback,
@@ -70,7 +89,7 @@ const Contact = () => {
             </div>
           </div>
           <div className="col-6">
-            <h4>Please provide your information below to contact you!</h4>
+            <h4>Provide your information!</h4>
             <Form onSubmit={handleSubmit}>
               <FormGroup>
                 <Label>Name</Label>
@@ -92,20 +111,20 @@ const Contact = () => {
                     type="email"
                     name="email"
                     id="email"
-                    placeholder="Enter your Email"
+                    placeholder="Enter your email"
                     onChange={handleChange}
                     required
                   />
                 </InputGroup>
               </FormGroup>
               <FormGroup>
-                <Label>Feedback</Label>
+                <Label>Message</Label>
                 <InputGroup>
                   <Input
                     type="textarea"
                     name="feedback"
                     id="feedback"
-                    placeholder="Provide your feedback"
+                    placeholder="Provide details about the issue or your feedback"
                     onChange={handleChange}
                   />
                 </InputGroup>
@@ -122,9 +141,14 @@ const Contact = () => {
           </div>
         </div>
       </div>
-      <div>
-        <ContactCard />
+      <div className="mt-4">
+        <div className="container d-flex">
+          <ContactCard item={contactInfo.location} />
+          <ContactCard item={contactInfo.phone} />
+          <ContactCard item={contactInfo.emailId} />
+        </div>
       </div>
+      <Footer />
     </>
   );
 };

@@ -16,7 +16,7 @@ const Navbar = ({ btn }) => {
         </Link>
         <div className="collapse navbar-collapse" id="navbarText">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
-          <span className="navbar-text">
+          {/* <span className="navbar-text">
             <Link
               to="/about"
               className="nav-link"
@@ -26,7 +26,7 @@ const Navbar = ({ btn }) => {
             >
               About
             </Link>
-          </span>
+          </span> */}
           <span className="navbar-text">
             <Link
               to="/contact"

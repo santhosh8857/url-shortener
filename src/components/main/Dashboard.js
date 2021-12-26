@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Form, FormGroup, Input, InputGroup, Table } from "reactstrap";
-import Navbar from "./Navbar";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "./login/LoginPage.css";
+import "../login/LoginPage.css";
+import Navbar from "../header-footer/Navbar";
+import Footer from "../header-footer/Footer";
 
 const Dashboard = () => {
   const [urls, setUrls] = useState([]);
@@ -160,6 +161,7 @@ const Dashboard = () => {
           </Table>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

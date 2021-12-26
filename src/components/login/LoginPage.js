@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import cardImg from "../img/user-icon.svg";
 import "./LoginPage.css";
-import Navbar from "../Navbar";
+import Navbar from "../header-footer/Navbar";
 
 const LoginPage = () => {
   const history = useHistory();
@@ -48,16 +48,16 @@ const LoginPage = () => {
       <div className="container">
         <div
           className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 align-items-center justify-content-center"
-          style={{ height: "90vh" }}
+          style={{ marginTop: "10px" }}
         >
-          <div className="card" style={{ width: "20rem" }}>
+          <div className="card" style={{ width: "20rem", marginBottom: "0px" }}>
             <img
               className="card-img-top"
               style={{ marginBottom: "0px" }}
               src={cardImg}
               alt="..."
             />
-            <div className="card-body p-4">
+            <div className="card-body p-2" style={{ marginBottom: "0px" }}>
               <Form onSubmit={handleSubmit} style={{ marginTop: "0px" }}>
                 <FormGroup>
                   <InputGroup>

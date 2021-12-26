@@ -11,8 +11,8 @@ import LoginPage from "./components/login/LoginPage";
 import ForgetPassword from "./components/login/ForgetPassword";
 import ResetPassword from "./components/login/ResetPassword";
 import Register from "./components/login/Register";
-import Dashboard from "./components/Dashboard";
-import Contact from "./components/Contact";
+import Dashboard from "./components/main/Dashboard";
+import Contact from "./components/main/Contact";
 import EmailVerification from "./components/login/EmailVerification";
 
 const routing = (

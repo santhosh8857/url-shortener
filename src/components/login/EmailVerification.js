@@ -4,6 +4,7 @@ import verify from "../img/verification.png";
 import error from "../img/404.png";
 import { useParams } from "react-router-dom";
 import Card from "../cards/Card";
+import Footer from "../header-footer/Footer";
 
 const items = {
   verified: {
@@ -57,6 +58,7 @@ const EmailVerification = () => {
           </>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
