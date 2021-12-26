@@ -33,7 +33,7 @@ const ResetPassword = () => {
   const handleSubmit = (e) => {
     if (newPassword === checkPassword) {
       axios
-        .post(`${process.env.REACT_APP_apiUrl}users/reset-password/${token}`, {
+        .post(`${process.env.REACT_APP_apiUrl}/users/reset-password/${token}`, {
           password: newPassword,
         })
         .then((resp) => checkPwd(resp))

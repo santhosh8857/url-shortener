@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   const handleSubmit = (e) => {
     axios
-      .post(`${process.env.REACT_APP_apiUrl}urls/add-url`, {
+      .post(`${process.env.REACT_APP_apiUrl}/urls/add-url`, {
         url: longurl,
       })
       .then((resp) => {
@@ -31,14 +31,14 @@ const Dashboard = () => {
 
   const getUrls = () => {
     axios
-      .get(`${process.env.REACT_APP_apiUrl}urls`)
+      .get(`${process.env.REACT_APP_apiUrl}/urls`)
       .then((resp) => setUrls(resp.data.data))
       .catch((err) => console.log(err));
   };
 
   const handleClick = (id, shortenUrl) => {
     axios
-      .post(`${process.env.REACT_APP_apiUrl}urls/${id}`)
+      .post(`${process.env.REACT_APP_apiUrl}/urls/${id}`)
       .then((resp) => {
         if (resp.data.status) {
           getUrls();
@@ -50,7 +50,7 @@ const Dashboard = () => {
 
   const deleteUrl = (id) => {
     axios
-      .delete(`${process.env.REACT_APP_apiUrl}urls/${id}`)
+      .delete(`${process.env.REACT_APP_apiUrl}/urls/${id}`)
       .then((resp) => {
         if (resp.data.status) {
           getUrls();

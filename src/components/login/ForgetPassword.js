@@ -11,7 +11,7 @@ const ForgetPassword = () => {
 
   const handleSubmit = (e) => {
     axios
-      .post(`${process.env.REACT_APP_apiUrl}users/forget-password`, {
+      .post(`${process.env.REACT_APP_apiUrl}/users/forget-password`, {
         username: username,
       })
       .then((resp) => checkUser(resp))

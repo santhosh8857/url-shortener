@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import Card from "./Card";
 import axios from "axios";
-import verify from "./img/verification.png";
-import error from "./img/404.png";
+import verify from "../img/verification.png";
+import error from "../img/404.png";
 import { useParams } from "react-router-dom";
+import Card from "../cards/Card";
 
 const items = {
   verified: {
@@ -30,7 +30,7 @@ const EmailVerification = () => {
   // to update the activation status of the user
   useEffect(() => {
     axios
-      .post(`${process.env.REACT_APP_apiUrl}users/verify-email/${emailToken}`)
+      .post(`${process.env.REACT_APP_apiUrl}/users/verify-email/${emailToken}`)
       .then((resp) => setUserVerification(resp))
       .catch((err) => console.log(err));
   }, [emailToken]);

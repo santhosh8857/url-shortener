@@ -31,7 +31,7 @@ const Register = () => {
   const handleSubmit = (e) => {
     if (password === checkpwd) {
       axios
-        .post(`${process.env.REACT_APP_apiUrl}users/register`, {
+        .post(`${process.env.REACT_APP_apiUrl}/users/register`, {
           username: username,
           firstname: firstname,
           lastname: lastname,

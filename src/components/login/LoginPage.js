@@ -21,7 +21,7 @@ const LoginPage = () => {
   // login
   const handleSubmit = (e) => {
     axios
-      .post(`${process.env.REACT_APP_apiUrl}users/login`, {
+      .post(`${process.env.REACT_APP_apiUrl}/users/login`, {
         username: username,
         password: password,
       })
