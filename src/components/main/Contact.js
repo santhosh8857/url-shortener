@@ -134,7 +134,7 @@ const Contact = () => {
                   className="btn btn-inline-block"
                   style={{ width: "100%", background: "#64b9ff" }}
                 >
-                  Submit
+                  Send Message <i className="fas fa-paper-plane"></i>
                 </button>
               </FormGroup>
             </Form>

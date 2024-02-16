@@ -8,7 +8,7 @@ const Footer = () => {
         className="text-light text-center fixed-bottom"
         style={{ fontSize: "0.9rem" }}
       >
-        Bit Sized URL &copy; 2021 All Rights Reversed
+        Bit Sized URL &copy; 2024 All Rights Reversed
       </p>
     </footer>
   );
